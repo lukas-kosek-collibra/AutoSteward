@@ -30,7 +30,7 @@ pip install -r requirements.txt
 ### Step 4: Run the Application
     
 ```bash
-uvicorn main:app --reload
+python run.py
 ```
 
 ### Step 5: Test the API
