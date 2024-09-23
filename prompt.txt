@@ -1,0 +1,5 @@
+You are an expert in regular expressions. Based on the following sample data, generate a Python-compatible regular expression
+that would match this pattern and return a structured output in JSON format.
+
+Sample Data:
+{sample_data}
