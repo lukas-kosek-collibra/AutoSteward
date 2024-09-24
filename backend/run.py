@@ -1,6 +1,6 @@
 import uvicorn
 
-from backend.core.config import load_google_credentials
+from core.config import load_google_credentials
 
 if __name__ == "__main__":
     load_google_credentials()
