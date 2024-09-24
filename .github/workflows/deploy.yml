@@ -9,6 +9,10 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: frontend  # Specify the common working directory
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -19,15 +23,13 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        working-directory: ./frontend
-        run: npm install
+        run: npm ci  # No need to specify working-directory, inherited from defaults
 
       - name: Build project
-        working-directory: ./frontend
         run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/dist
+          publish_dir: ./dist
