@@ -7,3 +7,15 @@ class RegexResult(BaseModel):
 
 class SampleDataRequest(BaseModel):
     sample_data: List[str] = Field(description="A list of sample data to generate a regex pattern for")
+
+class ColumnClassificationInput(BaseModel):
+    samples: List[str]
+    column_name: str
+    description: str
+    additional_context: Optional[str] = None
+
+class ColumnClassificationOutput(BaseModel):
+    name: str
+    examples: List[str]
+    classificationRule: str
+    description: str
