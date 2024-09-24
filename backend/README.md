@@ -35,7 +35,15 @@ python run.py
 
 ### Step 5: Test the API
 ```bash
-curl -X POST "http://localhost:8000/generate-regex" -H "Content-Type: application/json" -d '{"sample_data": ["example1", "example2", "example3"]}'
+curl -X POST "http://localhost:8000/generate-regex" \
+-H "Content-Type: application/json" \
+-d '{
+  "samples": ["john.doe@example.com", "jane.smith@company.org", "support@website.net"],
+  "column_name": "email",
+  "description": "This column contains email addresses of users",
+  "additional_context": "The format is typical email format, but may include various domain extensions."
+}'
+
 ```
 
 ## API Documentation
