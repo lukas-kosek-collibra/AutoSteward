@@ -49,6 +49,7 @@ import {
   Spinner,
   TabPanels,
   TabPanel,
+  VStack,
 } from "@chakra-ui/react";
 import { ChevronRight, ChevronUp, Info, X, User, Plus } from "lucide-react";
 import React, { useState } from "react";
@@ -371,172 +372,236 @@ const DataSummary = () => {
               <Tab>Attachments</Tab>
               <Tab>Data Protection</Tab>
             </TabList>
-            <TabPanels>
-              <TabPanel>
-                <Flex
-                  justifyContent="space-between"
-                  alignItems="center"
-                  mb={4}
-                  mt={4}
+            <Flex>
+              <VStack align="stretch" mr={4} mt={4}>
+                <Button
+                  variant="outline"
+                  colorScheme="blue"
+                  justifyContent="flex-start"
                 >
-                  <Heading size="lg">Overview</Heading>
-                  <Flex alignItems="center">
-                    <Text mr={2}>Show Empty Optional Values</Text>
-                    <Switch />
-                  </Flex>
-                </Flex>
-                <Box mb={4}>
-                  <Flex alignItems="center" mb={2}>
-                    <Heading size="md" mr={1}>
-                      Description
-                    </Heading>
-                    <Tooltip label="Information">
-                      <Box>
-                        <Info size={16} />
-                      </Box>
-                    </Tooltip>
-                  </Flex>
-                  <Text>
-                    Dataset that contains information to calculate credit scores
-                    for individual consumers.
-                  </Text>
-                </Box>
-                <Flex justifyContent="flex-end" mb={4}>
-                  <ButtonGroup size="sm">
-                    <Button
-                      variant="outline"
-                      colorScheme="blue"
-                      borderRadius="full"
-                      onClick={() => setIsExpanded(false)}
-                    >
-                      Collapse All
-                    </Button>
-                    <Button
-                      variant="outline"
-                      colorScheme="blue"
-                      borderRadius="full"
-                      onClick={() => setIsExpanded(true)}
-                      isDisabled={isExpanded}
-                    >
-                      Expand All
-                    </Button>
-                  </ButtonGroup>
-                </Flex>
-                <Box borderWidth={1} borderRadius="md" p={4} mt={4}>
+                  Overview
+                </Button>
+                <Button
+                  variant="outline"
+                  colorScheme="blue"
+                  justifyContent="flex-start"
+                >
+                  Descriptive Statistics
+                </Button>
+                <Button
+                  variant="outline"
+                  colorScheme="blue"
+                  justifyContent="flex-start"
+                >
+                  Details
+                </Button>
+                <Button
+                  variant="outline"
+                  colorScheme="blue"
+                  justifyContent="flex-start"
+                >
+                  Comments
+                </Button>
+              </VStack>
+              <TabPanels flex={1}>
+                <TabPanel>
                   <Flex
                     justifyContent="space-between"
                     alignItems="center"
                     mb={4}
+                    mt={4}
                   >
-                    <Heading size="md">Data Elements</Heading>
-                    <Flex>
-                      <IconButton
-                        aria-label="Expand/Collapse"
-                        icon={isExpanded ? <ChevronUp /> : <ChevronRight />}
-                        onClick={() => setIsExpanded(!isExpanded)}
-                        mr={2}
-                      />
-                      <IconButton aria-label="Add" icon={<Plus />} mr={2} />
-                      <IconButton aria-label="Info" icon={<Info />} mr={2} />
-                      <IconButton
-                        aria-label="Grid view"
-                        icon={<div />}
-                        mr={2}
-                      />
-                      <IconButton aria-label="List view" icon={<div />} />
+                    <Heading size="lg">Overview</Heading>
+                    <Flex alignItems="center">
+                      <Text mr={2}>Show Empty Optional Values</Text>
+                      <Switch />
                     </Flex>
                   </Flex>
-                  {isExpanded && (
-                    <Table variant="simple">
-                      <Thead>
-                        <Tr>
-                          <Th></Th>
-                          <Th>Name</Th>
-                          <Th>Table</Th>
-                          <Th>Description</Th>
-                          <Th>Data Classification</Th>
-                          <Th>Data Category</Th>
-                          <Th>Technical D...</Th>
-                          <Th># Rows</Th>
-                          <Th># Empt...</Th>
-                        </Tr>
-                      </Thead>
-                      <Tbody>
-                        <Tr>
-                          <Td>
-                            <Checkbox />
-                          </Td>
-                          <Td>CustomerAlternateKey</Td>
-                          <Td>DimCustomer</Td>
-                          <Td>An alternate identifi</Td>
-                          <Td>
-                            <Tag colorScheme="green">ID</Tag>
-                          </Td>
-                          <Td></Td>
-                          <Td>nvarchar</Td>
-                          <Td>18,484</Td>
-                          <Td>0 (0.00</Td>
-                        </Tr>
-                        <Tr>
-                          <Td>
-                            <Checkbox />
-                          </Td>
-                          <Td>C_ADDRESS</Td>
-                          <Td>CUSTOMER</Td>
-                          <Td>Customer address.</Td>
-                          <Td>
-                            <Tag colorScheme="green">Address</Tag>
-                          </Td>
-                          <Td></Td>
-                          <Td>VARCHAR</Td>
-                          <Td>1,500</Td>
-                          <Td>0 (0.00</Td>
-                        </Tr>
-                        <Tr>
-                          <Td>
-                            <Checkbox />
-                          </Td>
-                          <Td>transaction_date</Td>
-                          <Td>sales_data</Td>
-                          <Td>The transaction dat</Td>
-                          <Td>
-                            <Tag colorScheme="green">Date</Tag>
-                          </Td>
-                          <Td></Td>
-                          <Td>DATE</Td>
-                          <Td>4,999</Td>
-                          <Td>0 (0.00</Td>
-                        </Tr>
-                      </Tbody>
-                    </Table>
-                  )}
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <Box>Diagram content goes here</Box>
-              </TabPanel>
-              <TabPanel>
-                <Box>Pictures content goes here</Box>
-              </TabPanel>
-              <TabPanel>
-                <Box>Technical Lineage content goes here</Box>
-              </TabPanel>
-              <TabPanel>
-                <QualityTabContent />
-              </TabPanel>
-              <TabPanel>
-                <Box>Responsibilities content goes here</Box>
-              </TabPanel>
-              <TabPanel>
-                <Box>History content goes here</Box>
-              </TabPanel>
-              <TabPanel>
-                <Box>Attachments content goes here</Box>
-              </TabPanel>
-              <TabPanel>
-                <Box>Data Protection content goes here</Box>
-              </TabPanel>
-            </TabPanels>
+                  <Box mb={4}>
+                    <Flex alignItems="center" mb={2}>
+                      <Heading size="md" mr={1}>
+                        Description
+                      </Heading>
+                      <Tooltip label="Information">
+                        <Box>
+                          <Info size={16} />
+                        </Box>
+                      </Tooltip>
+                    </Flex>
+                    <Text>
+                      Dataset that contains information to calculate credit
+                      scores for individual consumers.
+                    </Text>
+                  </Box>
+                  <Box mb={4}>
+                    <Flex alignItems="center" mb={2}>
+                      <Heading size="md" mr={1}>
+                        Business Context
+                      </Heading>
+                    </Flex>
+                    <Text>
+                      <Link color="blue.500" href="#">
+                        Churn Rate
+                      </Link>
+                      ,{" "}
+                      <Link color="blue.500" href="#">
+                        Contact information (CCPA)
+                      </Link>
+                      ,{" "}
+                      <Link color="blue.500" href="#">
+                        Contact information
+                      </Link>
+                      ,{" "}
+                      <Link color="blue.500" href="#">
+                        Order
+                      </Link>
+                      ,{" "}
+                      <Link color="blue.500" href="#">
+                        Sales per Customer
+                      </Link>
+                      ...
+                    </Text>
+                    <Link color="blue.500" href="#">
+                      Show More (2)
+                    </Link>
+                  </Box>
+                  <Flex justifyContent="flex-end" mb={4}>
+                    <ButtonGroup size="sm">
+                      <Button
+                        variant="outline"
+                        colorScheme="blue"
+                        borderRadius="full"
+                        onClick={() => setIsExpanded(false)}
+                      >
+                        Collapse All
+                      </Button>
+                      <Button
+                        variant="outline"
+                        colorScheme="blue"
+                        borderRadius="full"
+                        onClick={() => setIsExpanded(true)}
+                        isDisabled={isExpanded}
+                      >
+                        Expand All
+                      </Button>
+                    </ButtonGroup>
+                  </Flex>
+                  <Box borderWidth={1} borderRadius="md" p={4} mt={4}>
+                    <Flex
+                      justifyContent="space-between"
+                      alignItems="center"
+                      mb={4}
+                    >
+                      <Heading size="md">Data Elements</Heading>
+                      <Flex>
+                        <IconButton
+                          aria-label="Expand/Collapse"
+                          icon={isExpanded ? <ChevronUp /> : <ChevronRight />}
+                          onClick={() => setIsExpanded(!isExpanded)}
+                          mr={2}
+                        />
+                        <IconButton aria-label="Add" icon={<Plus />} mr={2} />
+                        <IconButton aria-label="Info" icon={<Info />} mr={2} />
+                        <IconButton
+                          aria-label="Grid view"
+                          icon={<div />}
+                          mr={2}
+                        />
+                        <IconButton aria-label="List view" icon={<div />} />
+                      </Flex>
+                    </Flex>
+                    {isExpanded && (
+                      <Table variant="simple">
+                        <Thead>
+                          <Tr>
+                            <Th></Th>
+                            <Th>Name</Th>
+                            <Th>Table</Th>
+                            <Th>Description</Th>
+                            <Th>Data Classification</Th>
+                            <Th>Data Category</Th>
+                            <Th>Technical D...</Th>
+                            <Th># Rows</Th>
+                            <Th># Empt...</Th>
+                          </Tr>
+                        </Thead>
+                        <Tbody>
+                          <Tr>
+                            <Td>
+                              <Checkbox />
+                            </Td>
+                            <Td>CustomerAlternateKey</Td>
+                            <Td>DimCustomer</Td>
+                            <Td>An alternate identifi</Td>
+                            <Td>
+                              <Tag colorScheme="green">ID</Tag>
+                            </Td>
+                            <Td></Td>
+                            <Td>nvarchar</Td>
+                            <Td>18,484</Td>
+                            <Td>0 (0.00</Td>
+                          </Tr>
+                          <Tr>
+                            <Td>
+                              <Checkbox />
+                            </Td>
+                            <Td>C_ADDRESS</Td>
+                            <Td>CUSTOMER</Td>
+                            <Td>Customer address.</Td>
+                            <Td>
+                              <Tag colorScheme="green">Address</Tag>
+                            </Td>
+                            <Td></Td>
+                            <Td>VARCHAR</Td>
+                            <Td>1,500</Td>
+                            <Td>0 (0.00</Td>
+                          </Tr>
+                          <Tr>
+                            <Td>
+                              <Checkbox />
+                            </Td>
+                            <Td>transaction_date</Td>
+                            <Td>sales_data</Td>
+                            <Td>The transaction dat</Td>
+                            <Td>
+                              <Tag colorScheme="green">Date</Tag>
+                            </Td>
+                            <Td></Td>
+                            <Td>DATE</Td>
+                            <Td>4,999</Td>
+                            <Td>0 (0.00</Td>
+                          </Tr>
+                        </Tbody>
+                      </Table>
+                    )}
+                  </Box>
+                </TabPanel>
+                <TabPanel>
+                  <Box>Diagram content goes here</Box>
+                </TabPanel>
+                <TabPanel>
+                  <Box>Pictures content goes here</Box>
+                </TabPanel>
+                <TabPanel>
+                  <Box>Technical Lineage content goes here</Box>
+                </TabPanel>
+                <TabPanel>
+                  <QualityTabContent />
+                </TabPanel>
+                <TabPanel>
+                  <Box>Responsibilities content goes here</Box>
+                </TabPanel>
+                <TabPanel>
+                  <Box>History content goes here</Box>
+                </TabPanel>
+                <TabPanel>
+                  <Box>Attachments content goes here</Box>
+                </TabPanel>
+                <TabPanel>
+                  <Box>Data Protection content goes here</Box>
+                </TabPanel>
+              </TabPanels>
+            </Flex>
           </Tabs>
         </Box>
         <AtAGlancePanel />
