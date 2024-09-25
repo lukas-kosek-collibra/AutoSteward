@@ -30,17 +30,24 @@ export const BottomNavRight = () => {
               <Box
                 as="span"
                 borderLeft="1px"
-                borderColor="gray.300"
+                borderColor="#87b3fc"
                 height="20px"
                 mx={2}
               />
-              <ChevronDownIcon color="white" />
+              <ChevronDownIcon color="#87b3fc" />
             </>
           }
           display="flex"
           alignItems="center"
-          variant="solid"
-          colorScheme="blue"
+          variant="outline"
+          color="#87b3fc"
+          borderColor="#87b3fc"
+          _hover={{
+            bg: "transparent",
+          }}
+          _active={{
+            bg: "transparent",
+          }}
           borderRadius="full"
           aria-readonly="true"
         >
