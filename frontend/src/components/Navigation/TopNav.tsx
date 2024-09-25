@@ -9,6 +9,7 @@ import {
   ShoppingCart,
   HelpCircle,
 } from "lucide-react";
+import { CollibraLogo } from "./CollibraLogo";
 export const TopNav = () => {
   return (
     <Box minWidth="100%">
@@ -41,13 +42,7 @@ export const TopNav = () => {
             justifyContent="center"
           >
             <Box width="135px" height="32px" maxWidth="100%">
-              <Image
-                src="https://www.collibra.com/wp-content/uploads/2022/05/collibra-logo-white.svg"
-                alt="Collibra"
-                objectFit="contain"
-                width="100%"
-                height="100%"
-              />
+              {CollibraLogo()}
             </Box>
           </Link>
           <Divider
