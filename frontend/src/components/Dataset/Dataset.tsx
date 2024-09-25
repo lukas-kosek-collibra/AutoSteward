@@ -51,6 +51,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { useState } from "react";
+import { DatasetNav } from "./DatasetNav";
 export const Dataset = () => {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -349,294 +350,301 @@ export const Dataset = () => {
     </Box>
   );
   return (
-    <Box maxWidth="100%" p={4}>
-      <Flex justifyContent="flex-end" mb={4}>
-        <Button colorScheme="purple" onClick={() => setIsModalOpen(true)}>
-          Monitor for Compliance
-        </Button>
-      </Flex>
-      <Flex>
-        <Box flex={1} mr={4}>
-          <Tabs>
-            <TabList>
-              <Tab>Summary</Tab>
-              <Tab>Diagram</Tab>
-              <Tab>Pictures</Tab>
-              <Tab>Technical Lineage</Tab>
-              <Tab>Quality</Tab>
-              <Tab>Responsibilities</Tab>
-              <Tab>History</Tab>
-              <Tab>Attachments</Tab>
-              <Tab>Data Protection</Tab>
-            </TabList>
-            <Flex>
-              <VStack align="stretch" width="200px" spacing={2}>
-                <Button
-                  leftIcon={<BarChart2 size={16} />}
-                  justifyContent="flex-start"
-                  variant="ghost"
-                  isActive
-                >
-                  Overview
-                </Button>
-                <Button
-                  leftIcon={<ChevronRight size={16} />}
-                  justifyContent="flex-start"
-                  variant="ghost"
-                >
-                  Descriptive Statistics
-                </Button>
-                <Button
-                  leftIcon={<FileText size={16} />}
-                  justifyContent="flex-start"
-                  variant="ghost"
-                >
-                  Details
-                </Button>
-                <Button
-                  leftIcon={<MessageSquare size={16} />}
-                  justifyContent="flex-start"
-                  variant="ghost"
-                >
-                  Comments
-                </Button>
-              </VStack>
-              <TabPanels flex={1}>
-                <TabPanel>
-                  <Flex
-                    justifyContent="space-between"
-                    alignItems="center"
-                    mb={4}
-                    mt={4}
+    <>
+      <DatasetNav />
+      <Box maxWidth="100%" p={4}>
+        <Flex justifyContent="flex-end" mb={4}>
+          <Button colorScheme="purple" onClick={() => setIsModalOpen(true)}>
+            Monitor for Compliance
+          </Button>
+        </Flex>
+        <Flex>
+          <Box flex={1} mr={4}>
+            <Tabs>
+              <TabList>
+                <Tab>Summary</Tab>
+                <Tab>Diagram</Tab>
+                <Tab>Pictures</Tab>
+                <Tab>Technical Lineage</Tab>
+                <Tab>Quality</Tab>
+                <Tab>Responsibilities</Tab>
+                <Tab>History</Tab>
+                <Tab>Attachments</Tab>
+                <Tab>Data Protection</Tab>
+              </TabList>
+              <Flex>
+                <VStack align="stretch" width="200px" spacing={2}>
+                  <Button
+                    leftIcon={<BarChart2 size={16} />}
+                    justifyContent="flex-start"
+                    variant="ghost"
+                    isActive
                   >
-                    <Heading size="lg">Overview</Heading>
-                    <Flex alignItems="center">
-                      <Text mr={2}>Show Empty Optional Values</Text>
-                      <Switch />
-                    </Flex>
-                  </Flex>
-                  <Box mb={4}>
-                    <Flex alignItems="center" mb={2}>
-                      <Heading size="md" mr={1}>
-                        Description
-                      </Heading>
-                      <Tooltip label="Information">
-                        <Box>
-                          <Info size={16} />
-                        </Box>
-                      </Tooltip>
-                    </Flex>
-                    <Text>
-                      Dataset that contains information to calculate credit
-                      scores for individual consumers.
-                    </Text>
-                  </Box>
-                  <Box mb={4}>
-                    <Flex alignItems="center" mb={2}>
-                      <Heading size="md" mr={1}>
-                        Business Context
-                      </Heading>
-                    </Flex>
-                    <Text>
-                      <Link color="blue.500" href="#">
-                        Churn Rate
-                      </Link>
-                      ,{" "}
-                      <Link color="blue.500" href="#">
-                        Contact information (CCPA)
-                      </Link>
-                      ,{" "}
-                      <Link color="blue.500" href="#">
-                        Contact information
-                      </Link>
-                      ,{" "}
-                      <Link color="blue.500" href="#">
-                        Order
-                      </Link>
-                      ,{" "}
-                      <Link color="blue.500" href="#">
-                        Sales per Customer
-                      </Link>
-                      ...
-                    </Text>
-                    <Link color="blue.500" href="#">
-                      Show More (2)
-                    </Link>
-                  </Box>
-                  <Flex justifyContent="flex-end" mb={4}>
-                    <ButtonGroup size="sm">
-                      <Button
-                        variant="outline"
-                        colorScheme="blue"
-                        borderRadius="full"
-                        onClick={() => setIsExpanded(false)}
-                      >
-                        Collapse All
-                      </Button>
-                      <Button
-                        variant="outline"
-                        colorScheme="blue"
-                        borderRadius="full"
-                        onClick={() => setIsExpanded(true)}
-                        isDisabled={isExpanded}
-                      >
-                        Expand All
-                      </Button>
-                    </ButtonGroup>
-                  </Flex>
-                  <Box borderWidth={1} borderRadius="md" p={4} mt={4}>
+                    Overview
+                  </Button>
+                  <Button
+                    leftIcon={<ChevronRight size={16} />}
+                    justifyContent="flex-start"
+                    variant="ghost"
+                  >
+                    Descriptive Statistics
+                  </Button>
+                  <Button
+                    leftIcon={<FileText size={16} />}
+                    justifyContent="flex-start"
+                    variant="ghost"
+                  >
+                    Details
+                  </Button>
+                  <Button
+                    leftIcon={<MessageSquare size={16} />}
+                    justifyContent="flex-start"
+                    variant="ghost"
+                  >
+                    Comments
+                  </Button>
+                </VStack>
+                <TabPanels flex={1}>
+                  <TabPanel>
                     <Flex
                       justifyContent="space-between"
                       alignItems="center"
                       mb={4}
+                      mt={4}
                     >
-                      <Heading size="md">Data Elements</Heading>
-                      <Flex>
-                        <IconButton
-                          aria-label="Expand/Collapse"
-                          icon={isExpanded ? <ChevronUp /> : <ChevronRight />}
-                          onClick={() => setIsExpanded(!isExpanded)}
-                          mr={2}
-                        />
-                        <IconButton aria-label="Add" icon={<Plus />} mr={2} />
-                        <IconButton aria-label="Info" icon={<Info />} mr={2} />
-                        <IconButton
-                          aria-label="Grid view"
-                          icon={<div />}
-                          mr={2}
-                        />
-                        <IconButton aria-label="List view" icon={<div />} />
+                      <Heading size="lg">Overview</Heading>
+                      <Flex alignItems="center">
+                        <Text mr={2}>Show Empty Optional Values</Text>
+                        <Switch />
                       </Flex>
                     </Flex>
-                    {isExpanded && (
-                      <Table variant="simple">
-                        <Thead>
-                          <Tr>
-                            <Th></Th>
-                            <Th>Name</Th>
-                            <Th>Table</Th>
-                            <Th>Description</Th>
-                            <Th>Data Classification</Th>
-                            <Th>Data Category</Th>
-                            <Th>Technical D...</Th>
-                            <Th># Rows</Th>
-                            <Th># Empt...</Th>
-                          </Tr>
-                        </Thead>
-                        <Tbody>
-                          <Tr>
-                            <Td>
-                              <Checkbox />
-                            </Td>
-                            <Td>CustomerAlternateKey</Td>
-                            <Td>DimCustomer</Td>
-                            <Td>An alternate identifi</Td>
-                            <Td>
-                              <Tag colorScheme="green">ID</Tag>
-                            </Td>
-                            <Td></Td>
-                            <Td>nvarchar</Td>
-                            <Td>18,484</Td>
-                            <Td>0 (0.00</Td>
-                          </Tr>
-                          <Tr>
-                            <Td>
-                              <Checkbox />
-                            </Td>
-                            <Td>C_ADDRESS</Td>
-                            <Td>CUSTOMER</Td>
-                            <Td>Customer address.</Td>
-                            <Td>
-                              <Tag colorScheme="green">Address</Tag>
-                            </Td>
-                            <Td></Td>
-                            <Td>VARCHAR</Td>
-                            <Td>1,500</Td>
-                            <Td>0 (0.00</Td>
-                          </Tr>
-                          <Tr>
-                            <Td>
-                              <Checkbox />
-                            </Td>
-                            <Td>transaction_date</Td>
-                            <Td>sales_data</Td>
-                            <Td>The transaction dat</Td>
-                            <Td>
-                              <Tag colorScheme="green">Date</Tag>
-                            </Td>
-                            <Td></Td>
-                            <Td>DATE</Td>
-                            <Td>4,999</Td>
-                            <Td>0 (0.00</Td>
-                          </Tr>
-                        </Tbody>
-                      </Table>
-                    )}
-                  </Box>
-                </TabPanel>
-                <TabPanel>
-                  <Box>Diagram content goes here</Box>
-                </TabPanel>
-                <TabPanel>
-                  <Box>Pictures content goes here</Box>
-                </TabPanel>
-                <TabPanel>
-                  <Box>Technical Lineage content goes here</Box>
-                </TabPanel>
-                <TabPanel>
-                  <QualityTabContent />
-                </TabPanel>
-                <TabPanel>
-                  <Box>Responsibilities content goes here</Box>
-                </TabPanel>
-                <TabPanel>
-                  <Box>History content goes here</Box>
-                </TabPanel>
-                <TabPanel>
-                  <Box>Attachments content goes here</Box>
-                </TabPanel>
-                <TabPanel>
-                  <Box>Data Protection content goes here</Box>
-                </TabPanel>
-              </TabPanels>
-            </Flex>
-          </Tabs>
-        </Box>
-        <AtAGlancePanel />
-      </Flex>
+                    <Box mb={4}>
+                      <Flex alignItems="center" mb={2}>
+                        <Heading size="md" mr={1}>
+                          Description
+                        </Heading>
+                        <Tooltip label="Information">
+                          <Box>
+                            <Info size={16} />
+                          </Box>
+                        </Tooltip>
+                      </Flex>
+                      <Text>
+                        Dataset that contains information to calculate credit
+                        scores for individual consumers.
+                      </Text>
+                    </Box>
+                    <Box mb={4}>
+                      <Flex alignItems="center" mb={2}>
+                        <Heading size="md" mr={1}>
+                          Business Context
+                        </Heading>
+                      </Flex>
+                      <Text>
+                        <Link color="blue.500" href="#">
+                          Churn Rate
+                        </Link>
+                        ,{" "}
+                        <Link color="blue.500" href="#">
+                          Contact information (CCPA)
+                        </Link>
+                        ,{" "}
+                        <Link color="blue.500" href="#">
+                          Contact information
+                        </Link>
+                        ,{" "}
+                        <Link color="blue.500" href="#">
+                          Order
+                        </Link>
+                        ,{" "}
+                        <Link color="blue.500" href="#">
+                          Sales per Customer
+                        </Link>
+                        ...
+                      </Text>
+                      <Link color="blue.500" href="#">
+                        Show More (2)
+                      </Link>
+                    </Box>
+                    <Flex justifyContent="flex-end" mb={4}>
+                      <ButtonGroup size="sm">
+                        <Button
+                          variant="outline"
+                          colorScheme="blue"
+                          borderRadius="full"
+                          onClick={() => setIsExpanded(false)}
+                        >
+                          Collapse All
+                        </Button>
+                        <Button
+                          variant="outline"
+                          colorScheme="blue"
+                          borderRadius="full"
+                          onClick={() => setIsExpanded(true)}
+                          isDisabled={isExpanded}
+                        >
+                          Expand All
+                        </Button>
+                      </ButtonGroup>
+                    </Flex>
+                    <Box borderWidth={1} borderRadius="md" p={4} mt={4}>
+                      <Flex
+                        justifyContent="space-between"
+                        alignItems="center"
+                        mb={4}
+                      >
+                        <Heading size="md">Data Elements</Heading>
+                        <Flex>
+                          <IconButton
+                            aria-label="Expand/Collapse"
+                            icon={isExpanded ? <ChevronUp /> : <ChevronRight />}
+                            onClick={() => setIsExpanded(!isExpanded)}
+                            mr={2}
+                          />
+                          <IconButton aria-label="Add" icon={<Plus />} mr={2} />
+                          <IconButton
+                            aria-label="Info"
+                            icon={<Info />}
+                            mr={2}
+                          />
+                          <IconButton
+                            aria-label="Grid view"
+                            icon={<div />}
+                            mr={2}
+                          />
+                          <IconButton aria-label="List view" icon={<div />} />
+                        </Flex>
+                      </Flex>
+                      {isExpanded && (
+                        <Table variant="simple">
+                          <Thead>
+                            <Tr>
+                              <Th></Th>
+                              <Th>Name</Th>
+                              <Th>Table</Th>
+                              <Th>Description</Th>
+                              <Th>Data Classification</Th>
+                              <Th>Data Category</Th>
+                              <Th>Technical D...</Th>
+                              <Th># Rows</Th>
+                              <Th># Empt...</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td>
+                                <Checkbox />
+                              </Td>
+                              <Td>CustomerAlternateKey</Td>
+                              <Td>DimCustomer</Td>
+                              <Td>An alternate identifi</Td>
+                              <Td>
+                                <Tag colorScheme="green">ID</Tag>
+                              </Td>
+                              <Td></Td>
+                              <Td>nvarchar</Td>
+                              <Td>18,484</Td>
+                              <Td>0 (0.00</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>
+                                <Checkbox />
+                              </Td>
+                              <Td>C_ADDRESS</Td>
+                              <Td>CUSTOMER</Td>
+                              <Td>Customer address.</Td>
+                              <Td>
+                                <Tag colorScheme="green">Address</Tag>
+                              </Td>
+                              <Td></Td>
+                              <Td>VARCHAR</Td>
+                              <Td>1,500</Td>
+                              <Td>0 (0.00</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>
+                                <Checkbox />
+                              </Td>
+                              <Td>transaction_date</Td>
+                              <Td>sales_data</Td>
+                              <Td>The transaction dat</Td>
+                              <Td>
+                                <Tag colorScheme="green">Date</Tag>
+                              </Td>
+                              <Td></Td>
+                              <Td>DATE</Td>
+                              <Td>4,999</Td>
+                              <Td>0 (0.00</Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>
+                      )}
+                    </Box>
+                  </TabPanel>
+                  <TabPanel>
+                    <Box>Diagram content goes here</Box>
+                  </TabPanel>
+                  <TabPanel>
+                    <Box>Pictures content goes here</Box>
+                  </TabPanel>
+                  <TabPanel>
+                    <Box>Technical Lineage content goes here</Box>
+                  </TabPanel>
+                  <TabPanel>
+                    <QualityTabContent />
+                  </TabPanel>
+                  <TabPanel>
+                    <Box>Responsibilities content goes here</Box>
+                  </TabPanel>
+                  <TabPanel>
+                    <Box>History content goes here</Box>
+                  </TabPanel>
+                  <TabPanel>
+                    <Box>Attachments content goes here</Box>
+                  </TabPanel>
+                  <TabPanel>
+                    <Box>Data Protection content goes here</Box>
+                  </TabPanel>
+                </TabPanels>
+              </Flex>
+            </Tabs>
+          </Box>
+          <AtAGlancePanel />
+        </Flex>
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Select Relevant Policies</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <CheckboxGroup
-              colorScheme="purple"
-              value={selectedPolicies}
-              onChange={setSelectedPolicies}
-            >
-              <Stack spacing={2}>
-                <Checkbox value="AI Usage policy">AI Usage policy</Checkbox>
-                <Checkbox value="CCPA">CCPA</Checkbox>
-                <Checkbox value="Utah Consumer Privacy Act">
-                  Utah Consumer Privacy Act
-                </Checkbox>
-                <Checkbox value="PIPL">PIPL</Checkbox>
-              </Stack>
-            </CheckboxGroup>
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              colorScheme="purple"
-              onClick={handleMonitor}
-              isLoading={isLoading}
-            >
-              {isLoading ? <Spinner size="sm" /> : "Monitor"}
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </Box>
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Select Relevant Policies</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <CheckboxGroup
+                colorScheme="purple"
+                value={selectedPolicies}
+                onChange={setSelectedPolicies}
+              >
+                <Stack spacing={2}>
+                  <Checkbox value="AI Usage policy">AI Usage policy</Checkbox>
+                  <Checkbox value="CCPA">CCPA</Checkbox>
+                  <Checkbox value="Utah Consumer Privacy Act">
+                    Utah Consumer Privacy Act
+                  </Checkbox>
+                  <Checkbox value="PIPL">PIPL</Checkbox>
+                </Stack>
+              </CheckboxGroup>
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                colorScheme="purple"
+                onClick={handleMonitor}
+                isLoading={isLoading}
+              >
+                {isLoading ? <Spinner size="sm" /> : "Monitor"}
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </Box>
+    </>
   );
 };
