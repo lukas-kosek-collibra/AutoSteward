@@ -46,6 +46,9 @@ import {
   Textarea,
   useToast,
   Select,
+  CheckboxGroup,
+  Checkbox,
+  Spinner,
 } from "@chakra-ui/react";
 import {
   ChevronRight,
@@ -56,19 +59,24 @@ import {
   Database,
   Plus,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { render } from "react-dom";
 const DataSummary = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [dataClassification, setDataClassification] = useState("");
   const [showPII, setShowPII] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
   const handleSubmit = () => {
-    setIsSubmitted(true);
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsSubmitted(true);
+    }, 2000);
   };
   const handleSave = () => {
-    setDataClassification("email");
+    setDataClassification("Policy Category");
     setShowPII(true);
     onClose();
     toast({
@@ -79,6 +87,21 @@ const DataSummary = () => {
       position: "top",
     });
   };
+  const handleAIClick = () => {
+    onOpen();
+  };
+  const dataCategories = [
+    "Email",
+    "Age",
+    "First name",
+    "Occupation",
+    "Percentage",
+    "Country",
+    "SSN",
+    "Credit card",
+    "Phone number",
+    "Street Address",
+  ];
   return (
     <Box maxWidth="100%" p={4}>
       <Flex justifyContent="space-between">
@@ -369,7 +392,7 @@ const DataSummary = () => {
                   leftIcon={<Sparkles size={16} />}
                   colorScheme="purple"
                   borderRadius="full"
-                  onClick={onOpen}
+                  onClick={handleAIClick}
                 >
                   AI
                 </Button>
@@ -422,71 +445,50 @@ const DataSummary = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>AI Classification</ModalHeader>
+          <ModalHeader>AI Data Category</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {!isSubmitted ? (
-              <>
-                <Text mb={4}>
-                  Name, description, minimum text length, and maximum text
-                  length will be used, along with the provided column samples,
-                  to generate a data class definition for classifying the
-                  column. Please include any additional context or instructions
-                  to help in generating the data class.
-                </Text>
-                <Textarea placeholder="Additional instructions" mb={4} />
-              </>
-            ) : (
+            {isSubmitted && (
               <>
                 <Text fontWeight="bold" mb={2}>
-                  Name:
+                  Data Classes
                 </Text>
-                <Text mb={4}>email</Text>
-                <Text fontWeight="bold" mb={2}>
-                  Examples:
-                </Text>
-                <Text mb={1}>fdarqueo@behance.net</Text>
-                <Text mb={1}>crennard8i@columbia.edu</Text>
-                <Text mb={4}>meykelbosch4g@vxea.com</Text>
-                <Text fontWeight="bold" mb={2}>
-                  Classification Rule:
-                </Text>
-                <Text mb={4}>
-                  ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{(2, 6)}$
-                </Text>
-                <Text fontWeight="bold" mb={2}>
-                  Description:
-                </Text>
-                <Text mb={4}>Email address with valid domain</Text>
-                <Text mb={4}>
-                  If the result isn't what you're looking for, please provide
-                  additional instructions for adjustments and click 'Update' to
-                  try again.
-                </Text>
-                <Textarea placeholder="Additional instructions" mb={4} />
+                <CheckboxGroup defaultValue={dataCategories} mb={4}>
+                  <Stack spacing={2}>
+                    {dataCategories.map((category) => (
+                      <Checkbox key={category} value={category}>
+                        {category}
+                      </Checkbox>
+                    ))}
+                  </Stack>
+                </CheckboxGroup>
               </>
             )}
+            <Text mb={4}>
+              Please provide any context or instructions to help in generating
+              the data category.
+            </Text>
+            <Textarea placeholder="Additional instructions" mb={4} />
           </ModalBody>
           <ModalFooter>
             {!isSubmitted ? (
               <Button
-                leftIcon={<Sparkles size={16} />}
+                leftIcon={
+                  isLoading ? <Spinner size="sm" /> : <Sparkles size={16} />
+                }
                 colorScheme="purple"
                 mr={3}
                 onClick={handleSubmit}
+                isLoading={isLoading}
               >
-                Submit to AI
+                {isLoading ? "Submitting..." : "Submit to AI"}
               </Button>
             ) : (
               <>
                 <Button colorScheme="blue" mr={3} onClick={handleSave}>
                   Save
                 </Button>
-                <Button
-                  leftIcon={<Sparkles size={16} />}
-                  colorScheme="purple"
-                  mr={3}
-                >
+                <Button leftIcon={<Sparkles size={16} />} colorScheme="purple">
                   Update
                 </Button>
               </>
