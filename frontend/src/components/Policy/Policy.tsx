@@ -1,39 +1,20 @@
 import {
-  InfoIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  CheckIcon,
-  CloseIcon,
-} from "@chakra-ui/icons";
-import {
   Box,
   Flex,
   Stack,
   Text,
   Heading,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
   Switch,
   Button,
   ButtonGroup,
   Tooltip,
   Divider,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
   Tag,
-  Progress,
   TabList,
   Tab,
   Tabs,
   IconButton,
   CloseButton,
-  ChakraProvider,
   Link,
   Modal,
   ModalOverlay,
@@ -45,23 +26,13 @@ import {
   useDisclosure,
   Textarea,
   useToast,
-  Select,
   CheckboxGroup,
   Checkbox,
   Spinner,
 } from "@chakra-ui/react";
-import {
-  ChevronRight,
-  ChevronUp,
-  Info,
-  X,
-  Sparkles,
-  Database,
-  Plus,
-} from "lucide-react";
-import React, { useEffect, useState } from "react";
-import { render } from "react-dom";
-const DataSummary = () => {
+import { Info, X, Sparkles } from "lucide-react";
+import { useState } from "react";
+export const Policy = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [dataClassification, setDataClassification] = useState("");
@@ -453,7 +424,7 @@ const DataSummary = () => {
                 <Text fontWeight="bold" mb={2}>
                   Data Classes
                 </Text>
-                <CheckboxGroup defaultValue={dataCategories} mb={4}>
+                <CheckboxGroup defaultValue={dataCategories}>
                   <Stack spacing={2}>
                     {dataCategories.map((category) => (
                       <Checkbox key={category} value={category}>
@@ -499,10 +470,3 @@ const DataSummary = () => {
     </Box>
   );
 };
-export default DataSummary;
-render(
-  <ChakraProvider>
-    <DataSummary />
-  </ChakraProvider>,
-  document.getElementById("root")
-);
