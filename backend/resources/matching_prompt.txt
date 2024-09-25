@@ -11,7 +11,9 @@ You will:
     and semantic similarity that best align with the key characteristics of the policy.
 
 CONTEXT:
-Data Classes are common checks that help to identify and tag column-level semantic traits of a rule, such as credit score, SSN, and ZIP code.
+Data Classes are common checks that help to identify and tag column-level semantic traits of a rule,
+such as credit score, SSN, and ZIP code. Those rules are matched to Policies to ensure compliance with the Policy.
+Basically, Data Classes helps us identify columns on which the policy is applicable.
 
 The Data Policy is as follows:
 
