@@ -3,10 +3,10 @@ from annotated_types import Len
 from pydantic import BaseModel, constr
 
 class DataClass(BaseModel):
-    samples: Annotated[list[str], Len(min_length=1, max_length=100)]
-    column_name: constr(min_length=1, max_length=255)
-    description: constr(min_length=5, max_length=255)
-    additional_context: Optional[constr(max_length=500)] = None
+    samples: list[str]
+    column_name: str
+    description: str
+    additional_context: Optional[str] = None
     min_length: Optional[int] = None
     max_length: Optional[int] = None
 
