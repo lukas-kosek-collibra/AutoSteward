@@ -51,7 +51,17 @@ import {
   TabPanel,
   VStack,
 } from "@chakra-ui/react";
-import { ChevronRight, ChevronUp, Info, X, User, Plus } from "lucide-react";
+import {
+  ChevronRight,
+  ChevronUp,
+  Info,
+  X,
+  User,
+  Plus,
+  BarChart2,
+  FileText,
+  MessageSquare,
+} from "lucide-react";
 import React, { useState } from "react";
 import { render } from "react-dom";
 const DataSummary = () => {
@@ -373,32 +383,33 @@ const DataSummary = () => {
               <Tab>Data Protection</Tab>
             </TabList>
             <Flex>
-              <VStack align="stretch" mr={4} mt={4}>
+              <VStack align="stretch" width="200px" spacing={2}>
                 <Button
-                  variant="outline"
-                  colorScheme="blue"
+                  leftIcon={<BarChart2 size={16} />}
                   justifyContent="flex-start"
+                  variant="ghost"
+                  isActive
                 >
                   Overview
                 </Button>
                 <Button
-                  variant="outline"
-                  colorScheme="blue"
+                  leftIcon={<ChevronRight size={16} />}
                   justifyContent="flex-start"
+                  variant="ghost"
                 >
                   Descriptive Statistics
                 </Button>
                 <Button
-                  variant="outline"
-                  colorScheme="blue"
+                  leftIcon={<FileText size={16} />}
                   justifyContent="flex-start"
+                  variant="ghost"
                 >
                   Details
                 </Button>
                 <Button
-                  variant="outline"
-                  colorScheme="blue"
+                  leftIcon={<MessageSquare size={16} />}
                   justifyContent="flex-start"
+                  variant="ghost"
                 >
                   Comments
                 </Button>
