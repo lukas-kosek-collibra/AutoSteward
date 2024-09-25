@@ -53,7 +53,7 @@ import { render } from "react-dom";
 const DataSummary = () => {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPolicies, setSelectedPolicies] = useState([]);
+  const [selectedPolicies, setSelectedPolicies] = useState<(string | number)[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
   const handleMonitor = () => {
@@ -313,7 +313,7 @@ const DataSummary = () => {
             <CheckboxGroup
               colorScheme="purple"
               value={selectedPolicies}
-              onChange={setSelectedPolicies}
+              onChange={(value: Array<string | number>) => setSelectedPolicies(value)}
             >
               <Stack spacing={2}>
                 <Checkbox value="GDPR">GDPR</Checkbox>
