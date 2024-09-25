@@ -8,7 +8,7 @@ router = APIRouter()
 async def generate_regex(request: ColumnClassificationInput):
     try:
         chain = prompt | structured_llm
-        response = chain.invoke({
+        response = await chain.ainvoke({
             "samples": request.samples,
             "col_name": request.column_name,
             "description": request.description,
