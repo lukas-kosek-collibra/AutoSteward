@@ -1,15 +1,4 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  Tab,
-  TabList,
-  Tabs,
-  Text,
-  ChakraProvider,
-  TabPanels,
-  TabPanel,
-} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import {
   ShieldIcon,
   TagIcon,
@@ -18,12 +7,10 @@ import {
   BoxIcon,
   BookOpenIcon,
 } from "lucide-react";
-import React, { useState } from "react";
-import { render } from "react-dom";
-import { Policies } from "../Policies/Policies";
-import { Classifications } from "../Classifications/Classifications";
+import { useState } from "react";
 import { TopNav } from "./TopNav";
 import { MidNav } from "./MidNav";
+import { BottomNav } from "./BottomNav";
 export const Navigation = () => {
   const [activeTab, setActiveTab] = useState("data-classification");
   const tabs = [
@@ -62,6 +49,7 @@ export const Navigation = () => {
     <Box width="100%">
       <TopNav />
       <MidNav />
+      <BottomNav />
     </Box>
   );
 };
