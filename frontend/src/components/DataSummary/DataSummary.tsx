@@ -472,7 +472,7 @@ export const DataSummary = () => {
             </Box>
           </HStack>
         </Box>
-        <Box width="350px" borderWidth={1} borderRadius="md" p={4}>
+        <Box width="350px" borderWidth={1} borderRadius="md" p={4} ml={5}>
           <Flex justifyContent="space-between" alignItems="center" mb={4}>
             <Heading size="md">At a glance</Heading>
             <CloseButton size="sm" />
