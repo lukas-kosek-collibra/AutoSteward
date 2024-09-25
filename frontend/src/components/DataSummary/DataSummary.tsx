@@ -48,8 +48,12 @@ import {
   X,
   Sparkles,
   Database,
+  BarChart2,
+  FileText,
+  MessageSquare,
 } from "lucide-react";
 import { Icon1, Icon2, Icon3, Icon4 } from "./Icons";
+
 import { useState } from "react";
 
 const isDataset = () => {
@@ -186,9 +190,9 @@ export const DataSummary = () => {
   };
   return (
     <Box maxWidth="100%" p={4}>
-      <Flex justifyContent="space-between">
-        <Box flex={1} mr={4}>
-          <Tabs size="sm">
+      <Flex>
+        <Box flex={1}>
+          <Tabs size="sm" align="start">
             <TabList>
               <Tab>Summary</Tab>
               <Tab>Diagram</Tab>
@@ -202,231 +206,272 @@ export const DataSummary = () => {
             </TabList>
           </Tabs>
 
-          <Breadcrumb separator={<ChevronRight size={14} />} mt={4} mb={4}>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="#">SYS</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="#">CRM Cloud</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="#">Consumption</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="#">crm-consumption</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="#">CustomerSalesReporting</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink href="#">EmailAddress</BreadcrumbLink>
-            </BreadcrumbItem>
-          </Breadcrumb>
-
-          <Flex justifyContent="space-between" alignItems="center" mb={4}>
-            <Heading size="lg">Overview</Heading>
-            <Flex alignItems="center">
-              <Text mr={2}>Show Empty Optional Values</Text>
-              <Switch />
-            </Flex>
-          </Flex>
-
-          <Flex justifyContent="flex-end" mb={4}>
-            <ButtonGroup size="sm">
-              <Button variant="outline" colorScheme="blue" borderRadius="full">
-                Collapse All
+          <HStack align="flex-start" spacing={4} mt={4}>
+            <VStack align="stretch" width="200px" spacing={2}>
+              <Button
+                leftIcon={<BarChart2 size={16} />}
+                justifyContent="flex-start"
+                variant="ghost"
+                isActive
+              >
+                Overview
               </Button>
               <Button
-                variant="outline"
-                colorScheme="blue"
-                borderRadius="full"
-                isDisabled
+                leftIcon={<ChevronRight size={16} />}
+                justifyContent="flex-start"
+                variant="ghost"
               >
-                Expand All
+                Descriptive Statistics
               </Button>
-            </ButtonGroup>
-          </Flex>
-
-          <Box borderWidth={1} borderRadius="md" p={4} mb={4}>
-            <Flex justifyContent="space-between" alignItems="center" mb={4}>
-              <Heading size="md">Descriptive Statistics</Heading>
-              <IconButton
-                aria-label="Collapse section"
-                icon={<ChevronUp size={20} strokeWidth={3} />}
-                size="sm"
+              <Button
+                leftIcon={<FileText size={16} />}
+                justifyContent="flex-start"
                 variant="ghost"
-                colorScheme="blue"
-                borderRadius="full"
-              />
-            </Flex>
-
-            <Flex>
-              <Box flex={3} mr={4}>
-                <Tabs>
-                  <TabList>
-                    <Tab>Sample Data</Tab>
-                  </TabList>
-                </Tabs>
-                <Box maxHeight="400px" overflowY="auto">
-                  <Table size="sm" variant="striped" mt={2}>
-                    <Tbody>
-                      <Tr>
-                        <Td>vpostinsvi@rakuten.co.jp</Td>
-                      </Tr>
-                      <Tr>
-                        <Td>dchipp7h@gov.uk</Td>
-                      </Tr>
-                      <Tr>
-                        <Td>adecleyne1i@nature.com</Td>
-                      </Tr>
-                      <Tr>
-                        <Td>weslimonck@51.la</Td>
-                      </Tr>
-                      <Tr>
-                        <Td>fdarqueo@behance.net</Td>
-                      </Tr>
-                      <Tr>
-                        <Td>ikrebspi@timesonline.co.uk</Td>
-                      </Tr>
-                      <Tr>
-                        <Td>omanterfield@dot.gov</Td>
-                      </Tr>
-                      <Tr>
-                        <Td>htatterton4j@house.gov</Td>
-                      </Tr>
-                      <Tr>
-                        <Td>knitford9i@last.fm</Td>
-                      </Tr>
-                      <Tr>
-                        <Td>crennard8i@columbia.edu</Td>
-                      </Tr>
-                      <Tr>
-                        <Td>meykelbosch4g@vxea.com</Td>
-                      </Tr>
-                    </Tbody>
-                  </Table>
-                </Box>
-              </Box>
-
-              <Box flex={1}>
-                <Tabs>
-                  <TabList>
-                    <Tab>Statistics</Tab>
-                    <Tab>Metadata</Tab>
-                  </TabList>
-                </Tabs>
-
-                <Table size="sm" mt={2} variant="striped">
-                  <Tbody>
-                    <Tr>
-                      <Td>Rows</Td>
-                      <Td isNumeric>4,999</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>Empty Values</Td>
-                      <Td isNumeric>0 (0.00%)</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>Distinct Values</Td>
-                      <Td isNumeric>4,996</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>Categorical Data</Td>
-                      <Td>
-                        <CloseIcon color="red.500" />
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td>Minimum Text Length</Td>
-                      <Td isNumeric>9</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>Maximum Text Length</Td>
-                      <Td isNumeric>38</Td>
-                    </Tr>
-                  </Tbody>
-                </Table>
-              </Box>
-            </Flex>
-          </Box>
-
-          <Box borderWidth={1} borderRadius="md" p={4} mb={4}>
-            <Flex justifyContent="space-between" alignItems="center" mb={4}>
-              <Heading size="md">Details</Heading>
-              <IconButton
-                aria-label="Collapse section"
-                icon={<ChevronUp size={20} strokeWidth={3} />}
-                size="sm"
+              >
+                Details
+              </Button>
+              <Button
+                leftIcon={<MessageSquare size={16} />}
+                justifyContent="flex-start"
                 variant="ghost"
-                colorScheme="blue"
-                borderRadius="full"
-              />
-            </Flex>
+              >
+                Comments
+              </Button>
+            </VStack>
 
-            {showPII && (
-              <>
-                <Flex alignItems="center" mb={2}>
-                  <Text fontWeight="bold" mr={2}>
-                    Personally Identifiable Information
-                  </Text>
-                  <Tooltip label="Information">
-                    <InfoIcon />
-                  </Tooltip>
-                </Flex>
+            <Box flex={1}>
+              <Breadcrumb separator={<ChevronRight size={14} />} mt={0} mb={4}>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">SYS</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">CRM Cloud</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">Consumption</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">crm-consumption</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">
+                    CustomerSalesReporting
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbItem isCurrentPage>
+                  <BreadcrumbLink href="#">EmailAddress</BreadcrumbLink>
+                </BreadcrumbItem>
+              </Breadcrumb>
 
+              <Flex justifyContent="space-between" alignItems="center" mb={4}>
+                <Heading size="lg">Overview</Heading>
                 <Flex alignItems="center">
-                  <CheckIcon color="green.500" mr={2} />
-                  <Text>True</Text>
+                  <Text mr={2}>Show Empty Optional Values</Text>
+                  <Switch />
                 </Flex>
-              </>
-            )}
-          </Box>
-
-          <Box borderWidth={1} borderRadius="md" p={4} mb={4}>
-            <Flex justifyContent="space-between" alignItems="center" mb={4}>
-              <Heading size="md">is part of Data Set</Heading>
-              <IconButton
-                aria-label="Collapse section"
-                icon={<ChevronUp size={20} strokeWidth={3} />}
-                size="sm"
-                variant="ghost"
-                colorScheme="blue"
-                borderRadius="full"
-              />
-            </Flex>
-
-            <Flex justifyContent="space-between" alignItems="center" mb={4}>
-              <Flex alignItems="center">
-                <Text mr={2}>Sort By</Text>
-                <Select placeholder="Name" size="sm" width="150px">
-                  <option value="name">Name</option>
-                  <option value="date">Date</option>
-                  <option value="type">Type</option>
-                </Select>
               </Flex>
-              <ButtonGroup size="sm">
-                <IconButton
-                  aria-label="Add relation"
-                  icon={<ChevronRight size={16} />}
-                  variant="outline"
-                />
-                <IconButton
-                  aria-label="Info"
-                  icon={<Info size={16} />}
-                  variant="outline"
-                />
-                <IconButton
-                  aria-label="Grid view"
-                  icon={<Database size={16} />}
-                  variant="outline"
-                />
-              </ButtonGroup>
-            </Flex>
 
-            <Box p={4}>{isDataset()}</Box>
-          </Box>
+              <Flex justifyContent="flex-end" mb={4}>
+                <ButtonGroup size="sm">
+                  <Button
+                    variant="outline"
+                    colorScheme="blue"
+                    borderRadius="full"
+                  >
+                    Collapse All
+                  </Button>
+                  <Button
+                    variant="outline"
+                    colorScheme="blue"
+                    borderRadius="full"
+                    isDisabled
+                  >
+                    Expand All
+                  </Button>
+                </ButtonGroup>
+              </Flex>
+
+              <Box borderWidth={1} borderRadius="md" p={4} mb={4}>
+                <Flex justifyContent="space-between" alignItems="center" mb={4}>
+                  <Heading size="md">Descriptive Statistics</Heading>
+                  <IconButton
+                    aria-label="Collapse section"
+                    icon={<ChevronUp size={20} strokeWidth={3} />}
+                    size="sm"
+                    variant="ghost"
+                    colorScheme="blue"
+                    borderRadius="full"
+                  />
+                </Flex>
+
+                <Flex>
+                  <Box flex={3} mr={4}>
+                    <Tabs>
+                      <TabList>
+                        <Tab>Sample Data</Tab>
+                      </TabList>
+                    </Tabs>
+                    <Box maxHeight="400px" overflowY="auto">
+                      <Table size="sm" variant="striped" mt={2}>
+                        <Tbody>
+                          <Tr>
+                            <Td>vpostinsvi@rakuten.co.jp</Td>
+                          </Tr>
+                          <Tr>
+                            <Td>dchipp7h@gov.uk</Td>
+                          </Tr>
+                          <Tr>
+                            <Td>adecleyne1i@nature.com</Td>
+                          </Tr>
+                          <Tr>
+                            <Td>weslimonck@51.la</Td>
+                          </Tr>
+                          <Tr>
+                            <Td>fdarqueo@behance.net</Td>
+                          </Tr>
+                          <Tr>
+                            <Td>ikrebspi@timesonline.co.uk</Td>
+                          </Tr>
+                          <Tr>
+                            <Td>omanterfield@dot.gov</Td>
+                          </Tr>
+                          <Tr>
+                            <Td>htatterton4j@house.gov</Td>
+                          </Tr>
+                          <Tr>
+                            <Td>knitford9i@last.fm</Td>
+                          </Tr>
+                          <Tr>
+                            <Td>crennard8i@columbia.edu</Td>
+                          </Tr>
+                          <Tr>
+                            <Td>meykelbosch4g@vxea.com</Td>
+                          </Tr>
+                        </Tbody>
+                      </Table>
+                    </Box>
+                  </Box>
+
+                  <Box flex={1}>
+                    <Tabs>
+                      <TabList>
+                        <Tab>Statistics</Tab>
+                        <Tab>Metadata</Tab>
+                      </TabList>
+                    </Tabs>
+
+                    <Table size="sm" mt={2} variant="striped">
+                      <Tbody>
+                        <Tr>
+                          <Td>Rows</Td>
+                          <Td isNumeric>4,999</Td>
+                        </Tr>
+                        <Tr>
+                          <Td>Empty Values</Td>
+                          <Td isNumeric>0 (0.00%)</Td>
+                        </Tr>
+                        <Tr>
+                          <Td>Distinct Values</Td>
+                          <Td isNumeric>4,996</Td>
+                        </Tr>
+                        <Tr>
+                          <Td>Categorical Data</Td>
+                          <Td>
+                            <CloseIcon color="red.500" />
+                          </Td>
+                        </Tr>
+                        <Tr>
+                          <Td>Minimum Text Length</Td>
+                          <Td isNumeric>9</Td>
+                        </Tr>
+                        <Tr>
+                          <Td>Maximum Text Length</Td>
+                          <Td isNumeric>38</Td>
+                        </Tr>
+                      </Tbody>
+                    </Table>
+                  </Box>
+                </Flex>
+              </Box>
+
+              <Box borderWidth={1} borderRadius="md" p={4} mb={4}>
+                <Flex justifyContent="space-between" alignItems="center" mb={4}>
+                  <Heading size="md">Details</Heading>
+                  <IconButton
+                    aria-label="Collapse section"
+                    icon={<ChevronUp size={20} strokeWidth={3} />}
+                    size="sm"
+                    variant="ghost"
+                    colorScheme="blue"
+                    borderRadius="full"
+                  />
+                </Flex>
+
+                {showPII && (
+                  <>
+                    <Flex alignItems="center" mb={2}>
+                      <Text fontWeight="bold" mr={2}>
+                        Personally Identifiable Information
+                      </Text>
+                      <Tooltip label="Information">
+                        <InfoIcon />
+                      </Tooltip>
+                    </Flex>
+
+                    <Flex alignItems="center">
+                      <CheckIcon color="green.500" mr={2} />
+                      <Text>True</Text>
+                    </Flex>
+                  </>
+                )}
+              </Box>
+
+              <Box borderWidth={1} borderRadius="md" p={4} mb={4}>
+                <Flex justifyContent="space-between" alignItems="center" mb={4}>
+                  <Heading size="md">is part of Data Set</Heading>
+                  <IconButton
+                    aria-label="Collapse section"
+                    icon={<ChevronUp size={20} strokeWidth={3} />}
+                    size="sm"
+                    variant="ghost"
+                    colorScheme="blue"
+                    borderRadius="full"
+                  />
+                </Flex>
+
+                <Flex justifyContent="space-between" alignItems="center" mb={4}>
+                  <Flex alignItems="center">
+                    <Text mr={2}>Sort By</Text>
+                    <Select placeholder="Name" size="sm" width="150px">
+                      <option value="name">Name</option>
+                      <option value="date">Date</option>
+                      <option value="type">Type</option>
+                    </Select>
+                  </Flex>
+                  <ButtonGroup size="sm">
+                    <IconButton
+                      aria-label="Add relation"
+                      icon={<ChevronRight size={16} />}
+                      variant="outline"
+                    />
+                    <IconButton
+                      aria-label="Info"
+                      icon={<Info size={16} />}
+                      variant="outline"
+                    />
+                    <IconButton
+                      aria-label="Grid view"
+                      icon={<Database size={16} />}
+                      variant="outline"
+                    />
+                  </ButtonGroup>
+                </Flex>
+
+                {isDataset()}
+              </Box>
+            </Box>
+          </HStack>
         </Box>
-
         <Box width="350px" borderWidth={1} borderRadius="md" p={4}>
           <Flex justifyContent="space-between" alignItems="center" mb={4}>
             <Heading size="md">At a glance</Heading>
