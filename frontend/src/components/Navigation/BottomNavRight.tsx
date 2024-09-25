@@ -18,7 +18,6 @@ export const BottomNavRight = () => {
     <Box
       display="flex"
       alignItems="center"
-      padding="1rem"
       bg="rgb(1, 30, 51)"
       borderRadius="md"
     >

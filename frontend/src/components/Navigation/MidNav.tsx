@@ -8,8 +8,8 @@ import {
 import { HomeIcon, DatabaseIcon, ServerIcon, BarChartIcon } from "lucide-react";
 export const MidNav = () => {
   return (
-    <Box bg="#021e33" color="white" width="100%" py={4}>
-      <Flex maxWidth="100%" mx="auto" px={4}>
+    <Box bg="#021e33" color="white" width="100%" pt={4} px={4}>
+      <Flex maxWidth="100%" mx="auto">
         <Breadcrumb separator="/" fontWeight="medium" fontSize="sm">
           <BreadcrumbItem>
             <BreadcrumbLink as="span" display="flex" alignItems="center">

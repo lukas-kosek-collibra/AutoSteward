@@ -1,4 +1,12 @@
-import { Box, Flex, Button, Link, Image, Divider } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Button,
+  Link,
+  Image,
+  Divider,
+  Avatar,
+} from "@chakra-ui/react";
 import {
   Plus,
   LayoutGrid,
@@ -8,6 +16,7 @@ import {
   Activity,
   ShoppingCart,
   HelpCircle,
+  User,
 } from "lucide-react";
 import { CollibraLogo } from "./CollibraLogo";
 export const TopNav = () => {
@@ -23,6 +32,8 @@ export const TopNav = () => {
         justifyContent={"space-between"}
         lineHeight="21px"
         px={4}
+        pt={8}
+        pb={3}
       >
         <Flex alignItems="center" height="40px" gap="24px">
           <Link
@@ -185,13 +196,7 @@ export const TopNav = () => {
               borderRadius="50%"
               overflow="hidden"
             >
-              <Image
-                alt="Profile Picture"
-                src="https://demo-ui.collibra.com/rest/2.0/users/9693d5ce-9fb4-4e97-b46e-7218526eda14/avatar?width=30&height=30"
-                width="40px"
-                height="40px"
-                objectFit="cover"
-              />
+              <Avatar size="sm" icon={<User />} bg="gray.200" />
             </Box>
           </Button>
         </Flex>
