@@ -12,7 +12,9 @@ async def generate_regex(request: ColumnClassificationInput):
             "samples": request.samples,
             "col_name": request.column_name,
             "description": request.description,
-            "additional_conxet": request.additional_context
+            "additional_conxet": request.additional_context,
+            "min_length": request.min_length or "",
+            "max_length": request.max_length or ""
         })
         return response
     except Exception as e:

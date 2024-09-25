@@ -22,5 +22,7 @@ Use the following input:
 - Column name: {col_name}
 - Description: {description}
 - Additional context: {additional_conxet}
+- Min sample length: {min_sample_length}
+- Max sample length: {max_sample_length}
 
 Return the result as plain text, without any markdown or formatting.
