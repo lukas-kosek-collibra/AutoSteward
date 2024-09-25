@@ -10,9 +10,12 @@ You will:
 3.  Match the Data Policy to the most appropriate Data Class(es), based on the characteristics (description, name, etc.)
     and semantic similarity that best align with the key characteristics of the policy.
 
+CONTEXT:
+Data Classes are common checks that help to identify and tag column-level semantic traits of a rule, such as credit score, SSN, and ZIP code.
+
 The Data Policy is as follows:
 
 {data_policy}
 
-The Data Classes are as follows:
+The Data Classes ( are as follows:
 {data_classes}
