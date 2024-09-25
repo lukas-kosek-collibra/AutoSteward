@@ -47,20 +47,39 @@ import {
   ModalCloseButton,
   useDisclosure,
   Textarea,
+  useToast,
+  Select,
 } from "@chakra-ui/react";
-import { ChevronRight, ChevronUp, Info, X, Sparkles } from "lucide-react";
+import {
+  ChevronRight,
+  ChevronUp,
+  Info,
+  X,
+  Sparkles,
+  Database,
+} from "lucide-react";
 import React, { useState } from "react";
 import { render } from "react-dom";
 const DataSummary = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [dataClassification, setDataClassification] = useState("");
+  const [showPII, setShowPII] = useState(false);
+  const toast = useToast();
   const handleSubmit = () => {
     setIsSubmitted(true);
   };
   const handleSave = () => {
     setDataClassification("email");
+    setShowPII(true);
     onClose();
+    toast({
+      title: "Data Class created",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      position: "top",
+    });
   };
   return (
     <Box maxWidth="100%" p={4}>
@@ -82,19 +101,22 @@ const DataSummary = () => {
 
           <Breadcrumb separator={<ChevronRight size={14} />} mt={4} mb={4}>
             <BreadcrumbItem>
-              <BreadcrumbLink href="#">sys AWS RDS</BreadcrumbLink>
+              <BreadcrumbLink href="#">SYS</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <BreadcrumbLink href="#">sales</BreadcrumbLink>
+              <BreadcrumbLink href="#">CRM Cloud</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <BreadcrumbLink href="#">public</BreadcrumbLink>
+              <BreadcrumbLink href="#">Consumption</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <BreadcrumbLink href="#">sales_data</BreadcrumbLink>
+              <BreadcrumbLink href="#">crm-consumption</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#">CustomerSalesReporting</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink href="#">email</BreadcrumbLink>
+              <BreadcrumbLink href="#">EmailAddress</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
 
@@ -225,7 +247,7 @@ const DataSummary = () => {
             </Flex>
           </Box>
 
-          <Box borderWidth={1} borderRadius="md" p={4}>
+          <Box borderWidth={1} borderRadius="md" p={4} mb={4}>
             <Flex justifyContent="space-between" alignItems="center" mb={4}>
               <Heading size="md">Details</Heading>
               <IconButton
@@ -238,19 +260,84 @@ const DataSummary = () => {
               />
             </Flex>
 
-            <Flex alignItems="center" mb={2}>
-              <Text fontWeight="bold" mr={2}>
-                Personally Identifiable Information
-              </Text>
-              <Tooltip label="Information">
-                <InfoIcon />
-              </Tooltip>
+            {showPII && (
+              <>
+                <Flex alignItems="center" mb={2}>
+                  <Text fontWeight="bold" mr={2}>
+                    Personally Identifiable Information
+                  </Text>
+                  <Tooltip label="Information">
+                    <InfoIcon />
+                  </Tooltip>
+                </Flex>
+
+                <Flex alignItems="center">
+                  <CheckIcon color="green.500" mr={2} />
+                  <Text>True</Text>
+                </Flex>
+              </>
+            )}
+          </Box>
+
+          <Box borderWidth={1} borderRadius="md" p={4} mb={4}>
+            <Flex justifyContent="space-between" alignItems="center" mb={4}>
+              <Heading size="md">is part of Data Set</Heading>
+              <IconButton
+                aria-label="Collapse section"
+                icon={<ChevronUp size={20} strokeWidth={3} />}
+                size="sm"
+                variant="ghost"
+                colorScheme="blue"
+                borderRadius="full"
+              />
             </Flex>
 
-            <Flex alignItems="center">
-              <CheckIcon color="green.500" mr={2} />
-              <Text>True</Text>
+            <Flex justifyContent="space-between" alignItems="center" mb={4}>
+              <Flex alignItems="center">
+                <Text mr={2}>Sort By</Text>
+                <Select placeholder="Name" size="sm" width="150px">
+                  <option value="name">Name</option>
+                  <option value="date">Date</option>
+                  <option value="type">Type</option>
+                </Select>
+              </Flex>
+              <ButtonGroup size="sm">
+                <IconButton
+                  aria-label="Add relation"
+                  icon={<ChevronRight size={16} />}
+                  variant="outline"
+                />
+                <IconButton
+                  aria-label="Info"
+                  icon={<Info size={16} />}
+                  variant="outline"
+                />
+                <IconButton
+                  aria-label="Grid view"
+                  icon={<Database size={16} />}
+                  variant="outline"
+                />
+              </ButtonGroup>
             </Flex>
+
+            <Box borderWidth={1} borderRadius="md" p={4}>
+              <Flex alignItems="center" mb={2}>
+                <Database size={20} />
+                <Text fontWeight="bold" ml={2}>
+                  Customer Analytics
+                </Text>
+                <Tag size="sm" colorScheme="green" ml={2}>
+                  APPROVED
+                </Tag>
+              </Flex>
+              <Text fontSize="sm" mb={2}>
+                This dataset contains information about customers. It includes
+                their names, addresses, genders, and purchase history.
+              </Text>
+              <Text fontSize="sm" color="blue.500">
+                Asset Type: Data Set
+              </Text>
+            </Box>
           </Box>
         </Box>
 
@@ -448,7 +535,7 @@ const DataSummary = () => {
                   Classification Rule:
                 </Text>
                 <Text mb={4}>
-                  ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]&#123;2,6&#125;$
+                  ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{(2, 6)}$
                 </Text>
                 <Text fontWeight="bold" mb={2}>
                   Description:
