@@ -1,6 +1,5 @@
-import { path } from "framer-motion/client";
 import { DataSummary } from "../components/DataSummary/DataSummary";
-import { Policy } from "../components/Policy/policy";
+import { Policy } from "../components/Policy/Policy";
 
 export const ROUTES = [
   {
