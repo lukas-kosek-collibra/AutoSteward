@@ -21,7 +21,6 @@ import {
   Tabs,
   IconButton,
   CloseButton,
-  ChakraProvider,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -37,6 +36,10 @@ import {
   Textarea,
   useToast,
   Select,
+  VStack,
+  HStack,
+  UnorderedList,
+  ListItem,
 } from "@chakra-ui/react";
 import {
   ChevronRight,
@@ -46,8 +49,120 @@ import {
   Sparkles,
   Database,
 } from "lucide-react";
+import { Icon1, Icon2, Icon3, Icon4 } from "./Icons";
 import { useState } from "react";
-import { render } from "react-dom";
+
+const isDataset = () => {
+  return (
+    <Box
+      maxWidth="100%"
+      color="rgb(25, 28, 34)"
+      bg="white"
+      borderWidth="1px"
+      borderColor="rgb(126, 136, 154)"
+      borderRadius="16px"
+      p="16px"
+      fontSize="14px"
+      lineHeight="21px"
+      fontFamily='"Inter Variable", "Open Sans Variable", "Helvetica Neue", Helvetica, Arial, sans-serif'
+    >
+      <Flex alignItems="center" mb="24px">
+        <Box flexGrow={1}>
+          <VStack align="stretch" spacing="8px">
+            <Link
+              href="/domain/00000000-0000-0000-0001-000200000001"
+              fontSize="13px"
+              color="rgb(88, 96, 108)"
+            >
+              <HStack spacing="4px">
+                <Icon1 width="16px" height="16px" fill="rgb(25, 28, 34)" />
+                <Text
+                  fontWeight="400"
+                  overflow="hidden"
+                  textOverflow="ellipsis"
+                  whiteSpace="nowrap"
+                >
+                  Data Sets
+                </Text>
+              </HStack>
+            </Link>
+            <HStack spacing="8px" mt="8px">
+              <Flex
+                width="24px"
+                height="24px"
+                bg="rgb(253, 189, 55)"
+                color="rgba(0, 0, 0, 0.87)"
+                borderRadius="4px"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Icon2 width="16px" height="16px" fill="rgba(0, 0, 0, 0.87)" />
+              </Flex>
+              <Link
+                href="/asset/72355264-0610-453a-a0c3-47fb927f3139"
+                fontSize="16px"
+                lineHeight="24px"
+                color="rgb(25, 28, 34)"
+                overflow="hidden"
+                textOverflow="ellipsis"
+              >
+                Customer Analytics
+              </Link>
+              <Icon3 width="24px" height="24px" fill="rgb(73, 226, 180)" />
+            </HStack>
+            <Text
+              fontSize="12px"
+              lineHeight="12px"
+              letterSpacing="0.12px"
+              textTransform="uppercase"
+              color="rgb(88, 96, 108)"
+              mt="8px"
+            >
+              Approved
+            </Text>
+          </VStack>
+        </Box>
+        <Button
+          aria-label="Delete relation"
+          variant="ghost"
+          size="sm"
+          color="rgb(88, 148, 251)"
+          mt="-4px"
+          mr="-8px"
+        >
+          <Icon4 width="16px" height="16px" fill="rgb(25, 28, 34)" />
+        </Button>
+      </Flex>
+      <VStack align="stretch" spacing="16px">
+        <Box>
+          <Heading as="h5" size="sm" mb="8px">
+            Description
+          </Heading>
+          <UnorderedList styleType="none" m={0} p={0}>
+            <ListItem lineHeight="20px">
+              <Text>
+                This dataset contains information about customers. It includes
+                their names, addresses, genders, and purchase history.
+              </Text>
+            </ListItem>
+          </UnorderedList>
+        </Box>
+        <Box>
+          <Text fontWeight="600" mb="8px">
+            Asset Type
+          </Text>
+          <Link
+            href="/assettype/00000000-0000-0000-0001-000400000001"
+            color="rgb(16, 97, 237)"
+          >
+            Data Set
+          </Link>
+        </Box>
+      </VStack>
+    </Box>
+  );
+};
+
 export const DataSummary = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -308,24 +423,7 @@ export const DataSummary = () => {
               </ButtonGroup>
             </Flex>
 
-            <Box borderWidth={1} borderRadius="md" p={4}>
-              <Flex alignItems="center" mb={2}>
-                <Database size={20} />
-                <Text fontWeight="bold" ml={2}>
-                  Customer Analytics
-                </Text>
-                <Tag size="sm" colorScheme="green" ml={2}>
-                  APPROVED
-                </Tag>
-              </Flex>
-              <Text fontSize="sm" mb={2}>
-                This dataset contains information about customers. It includes
-                their names, addresses, genders, and purchase history.
-              </Text>
-              <Text fontSize="sm" color="blue.500">
-                Asset Type: Data Set
-              </Text>
-            </Box>
+            <Box p={4}>{isDataset()}</Box>
           </Box>
         </Box>
 
