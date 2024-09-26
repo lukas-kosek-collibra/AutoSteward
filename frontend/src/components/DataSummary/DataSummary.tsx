@@ -53,6 +53,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { Icon1, Icon2, Icon3, Icon4 } from "./Icons";
+import { Code } from "@chakra-ui/react";
 
 import { useState } from "react";
 import { ColumnNav } from "./ColumnNav";
@@ -179,9 +180,14 @@ export const DataSummary = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [dataClassification, setDataClassification] = useState("");
   const [showPII, setShowPII] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
   const handleSubmit = () => {
-    setIsSubmitted(true);
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsSubmitted(true);
+    }, 2000);
   };
   const handleSave = () => {
     setDataClassification("email");
@@ -671,11 +677,8 @@ export const DataSummary = () => {
               {!isSubmitted ? (
                 <>
                   <Text mb={4}>
-                    Name, description, minimum text length, and maximum text
-                    length will be used, along with the provided column samples,
-                    to generate a data class definition for classifying the
-                    column. Please include any additional context or
-                    instructions to help in generating the data class.
+                    Please include any additional context or instructions to
+                    help in generating the data class.
                   </Text>
                   <Textarea placeholder="Additional instructions" mb={4} />
                 </>
@@ -695,7 +698,7 @@ export const DataSummary = () => {
                     Classification Rule:
                   </Text>
                   <Text mb={4}>
-                    {`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{(2, 6)}$`}
+                    <Code children="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{(2, 6)}$"></Code>
                   </Text>
                   <Text fontWeight="bold" mb={2}>
                     Description:
@@ -715,22 +718,31 @@ export const DataSummary = () => {
                 <Button
                   leftIcon={<Sparkles size={16} />}
                   colorScheme="purple"
+                  borderRadius="full"
                   mr={3}
                   onClick={handleSubmit}
+                  isLoading={isLoading}
                 >
-                  Submit to AI
+                  {isLoading ? "Submitting..." : "Submit to AI"}
                 </Button>
               ) : (
                 <>
-                  <Button colorScheme="blue" mr={3} onClick={handleSave}>
-                    Save
-                  </Button>
                   <Button
                     leftIcon={<Sparkles size={16} />}
+                    borderRadius="full"
                     colorScheme="purple"
                     mr={3}
                   >
                     Update
+                  </Button>
+                  <Button
+                    mr={3}
+                    variant="outline"
+                    colorScheme="blue"
+                    borderRadius="full"
+                    onClick={handleSave}
+                  >
+                    Save
                   </Button>
                 </>
               )}
