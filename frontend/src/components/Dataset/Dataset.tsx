@@ -411,13 +411,8 @@ export const Dataset = () => {
   );
   return (
     <>
-      <DatasetNav />
+      <DatasetNav setIsModalOpen={setIsModalOpen} />
       <Box maxWidth="100%" p={4}>
-        <Flex justifyContent="flex-end" mb={4}>
-          <Button colorScheme="purple" onClick={() => setIsModalOpen(true)}>
-            Monitor for Compliance
-          </Button>
-        </Flex>
         <Flex>
           <Box flex={1} mr={4}>
             <Tabs>

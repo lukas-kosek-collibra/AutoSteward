@@ -13,7 +13,14 @@ import {
   ChevronDownIcon,
   InfoIcon,
 } from "lucide-react";
-export const DatasetNavRight = () => {
+
+interface DatasetNavRightProps {
+  setIsModalOpen: (value: boolean) => void;
+}
+
+export const DatasetNavRight: React.FC<DatasetNavRightProps> = ({
+  setIsModalOpen,
+}) => {
   return (
     <Box
       display="flex"
@@ -54,8 +61,9 @@ export const DatasetNavRight = () => {
           Ask the Expert
         </MenuButton>
         <MenuList>
-          <MenuItem>Foo</MenuItem>
-          <MenuItem>Bar</MenuItem>
+          <MenuItem onClick={() => setIsModalOpen(true)}>
+            Monitor for Compliance
+          </MenuItem>
         </MenuList>
       </Menu>
       <IconButton
