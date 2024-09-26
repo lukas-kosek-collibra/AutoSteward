@@ -81,7 +81,7 @@ export const Dataset = () => {
       table: "CUSTOMER_DATA",
       description: "Age of the customer",
       dataClassification: "Age",
-      dataCategory: "Policy Category",
+      dataCategory: "PII",
       technicalDetails: "NUMBER",
       numRows: "100,000",
       numEmpty: "0 (0.00%)",
@@ -91,7 +91,7 @@ export const Dataset = () => {
       table: "CUSTOMER_DATA",
       description: "",
       dataClassification: "Street address",
-      dataCategory: "Policy Category",
+      dataCategory: "PII",
       technicalDetails: "STRING",
       numRows: "100,000",
       numEmpty: "0 (0.00%)",
@@ -101,7 +101,7 @@ export const Dataset = () => {
       table: "CUSTOMER_DATA",
       description: "",
       dataClassification: "Phone number",
-      dataCategory: "Policy Category",
+      dataCategory: "PII",
       technicalDetails: "NUMBER",
       numRows: "100,000",
       numEmpty: "0 (0.00%)",
@@ -111,7 +111,7 @@ export const Dataset = () => {
       table: "CUSTOMER_DATA",
       description: "Email address of the customer",
       dataClassification: "Email",
-      dataCategory: "Policy Category",
+      dataCategory: "PII",
       technicalDetails: "STRING",
       numRows: "100,000",
       numEmpty: "0 (0.00%)",
@@ -131,7 +131,7 @@ export const Dataset = () => {
       table: "CUSTOMER_DATA",
       description: "Customers full name",
       dataClassification: "First Name",
-      dataCategory: "Policy Category",
+      dataCategory: "PII",
       technicalDetails: "STRING",
       numRows: "100,000",
       numEmpty: "0 (0.00%)",
@@ -141,7 +141,7 @@ export const Dataset = () => {
       table: "CUSTOMER_DATA",
       description: "",
       dataClassification: "Credit Card",
-      dataCategory: "Policy Category",
+      dataCategory: "PII",
       technicalDetails: "NUMBER",
       numRows: "100,000",
       numEmpty: "0 (0.00%)",
@@ -595,15 +595,14 @@ export const Dataset = () => {
                                 <Td>{row.table}</Td>
                                 <Td>{row.description}</Td>
                                 <Td>
-                                  {showDataClasses &&
-                                    row.dataClassification && (
-                                      <Tag colorScheme="green">
-                                        {row.dataClassification}
-                                      </Tag>
-                                    )}
+                                  {row.dataClassification && (
+                                    <Tag colorScheme="green">
+                                      {row.dataClassification}
+                                    </Tag>
+                                  )}
                                 </Td>
                                 <Td>
-                                  {showDataClasses && row.dataCategory && (
+                                  {row.dataCategory && (
                                     <Tag colorScheme="green">
                                       {row.dataCategory}
                                     </Tag>

@@ -48,7 +48,7 @@ export const Policy = () => {
     }, 2000);
   };
   const handleSave = () => {
-    setDataClassification("Policy Category");
+    setDataClassification("PII");
     setShowPII(true);
     onClose();
     toast({
