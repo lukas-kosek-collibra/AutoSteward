@@ -433,7 +433,7 @@ export const Dataset = () => {
                 <Tab>Data Protection</Tab>
               </TabList>
               <Flex>
-                <VStack align="stretch" width="200px" spacing={2}>
+                <VStack align="stretch" width="200px" spacing={2} mt={4}>
                   <Button
                     leftIcon={<BarChart2 size={16} />}
                     justifyContent="flex-start"
