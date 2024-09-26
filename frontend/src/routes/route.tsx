@@ -4,15 +4,15 @@ import { Policy } from "../components/Policy/Policy";
 
 export const ROUTES = [
   {
-    path: "/AutoSteward/",
+    path: "/",
     element: <DataSummary />,
   },
   {
-    path: "/AutoSteward/policy",
+    path: "/policy",
     element: <Policy />,
   },
   {
-    path: "/AutoSteward/dataset",
+    path: "/dataset",
     element: <Dataset />,
   },
 ];
