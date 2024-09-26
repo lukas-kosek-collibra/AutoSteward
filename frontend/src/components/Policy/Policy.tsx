@@ -52,7 +52,7 @@ export const Policy = () => {
     setShowPII(true);
     onClose();
     toast({
-      title: "Data Class created",
+      title: "Data Category created and assigned to policy.",
       status: "success",
       duration: 3000,
       isClosable: true,
