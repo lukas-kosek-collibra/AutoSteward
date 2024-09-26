@@ -719,7 +719,6 @@ export const DataSummary = () => {
                   leftIcon={<Sparkles size={16} />}
                   colorScheme="purple"
                   borderRadius="full"
-                  mr={3}
                   onClick={handleSubmit}
                   isLoading={isLoading}
                 >
@@ -736,7 +735,6 @@ export const DataSummary = () => {
                     Update
                   </Button>
                   <Button
-                    mr={3}
                     variant="outline"
                     colorScheme="blue"
                     borderRadius="full"

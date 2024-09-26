@@ -440,7 +440,7 @@ export const Policy = () => {
                   </CheckboxGroup>
                 </>
               )}
-              <Text mb={4}>
+              <Text mb={4} mt={8}>
                 Please provide any context or instructions to help in generating
                 the data category.
               </Text>
@@ -455,20 +455,28 @@ export const Policy = () => {
                   colorScheme="purple"
                   mr={3}
                   onClick={handleSubmit}
+                  borderRadius="full"
                   isLoading={isLoading}
                 >
                   {isLoading ? "Submitting..." : "Submit to AI"}
                 </Button>
               ) : (
                 <>
-                  <Button colorScheme="blue" mr={3} onClick={handleSave}>
-                    Save
-                  </Button>
                   <Button
                     leftIcon={<Sparkles size={16} />}
                     colorScheme="purple"
+                    borderRadius="full"
+                    mr={3}
                   >
                     Update
+                  </Button>
+                  <Button
+                    colorScheme="blue"
+                    variant="outline"
+                    borderRadius="full"
+                    onClick={handleSave}
+                  >
+                    Save
                   </Button>
                 </>
               )}

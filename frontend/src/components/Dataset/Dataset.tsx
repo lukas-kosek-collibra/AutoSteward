@@ -57,12 +57,14 @@ export const Dataset = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPolicies, setSelectedPolicies] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showDataClasses, setShowDataClasses] = useState(false);
   const toast = useToast();
   const handleMonitor = () => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
       setIsModalOpen(false);
+      setShowDataClasses(true);
       toast({
         title: "Data quality monitoring job started",
         status: "success",
@@ -72,6 +74,172 @@ export const Dataset = () => {
       });
     }, 1000);
   };
+
+  const dataElements = [
+    {
+      name: "AGE",
+      table: "CUSTOMER_DATA",
+      description: "Age of the customer",
+      dataClassification: "Age",
+      dataCategory: "Policy Category",
+      technicalDetails: "NUMBER",
+      numRows: "100,000",
+      numEmpty: "0 (0.00%)",
+    },
+    {
+      name: "C_ADDRESS",
+      table: "CUSTOMER_DATA",
+      description: "",
+      dataClassification: "Street address",
+      dataCategory: "Policy Category",
+      technicalDetails: "STRING",
+      numRows: "100,000",
+      numEmpty: "0 (0.00%)",
+    },
+    {
+      name: "C_PHONE",
+      table: "CUSTOMER_DATA",
+      description: "",
+      dataClassification: "Phone number",
+      dataCategory: "Policy Category",
+      technicalDetails: "NUMBER",
+      numRows: "100,000",
+      numEmpty: "0 (0.00%)",
+    },
+    {
+      name: "EmailAddress",
+      table: "CUSTOMER_DATA",
+      description: "Email address of the customer",
+      dataClassification: "Email",
+      dataCategory: "Policy Category",
+      technicalDetails: "STRING",
+      numRows: "100,000",
+      numEmpty: "0 (0.00%)",
+    },
+    {
+      name: "SALES_AMT",
+      table: "CUSTOMER_DATA",
+      description: "",
+      dataClassification: "",
+      dataCategory: "",
+      technicalDetails: "NUMBER",
+      numRows: "100,000",
+      numEmpty: "0 (0.00%)",
+    },
+    {
+      name: "NAME",
+      table: "CUSTOMER_DATA",
+      description: "Customers full name",
+      dataClassification: "First Name",
+      dataCategory: "Policy Category",
+      technicalDetails: "STRING",
+      numRows: "100,000",
+      numEmpty: "0 (0.00%)",
+    },
+    {
+      name: "NUM_CRDT_CARD",
+      table: "CUSTOMER_DATA",
+      description: "",
+      dataClassification: "Credit Card",
+      dataCategory: "Policy Category",
+      technicalDetails: "NUMBER",
+      numRows: "100,000",
+      numEmpty: "0 (0.00%)",
+    },
+    // Add more objects as needed
+  ];
+
+  const qualityData = [
+    {
+      dataElement: "Email_IsValid",
+      domain: "DQ Rule-Customer Analytics",
+      dataClassification: "Email",
+      qualityScore: "50",
+      policy: "AI Usage, GDPR",
+      dimension: "Accuracy, Completeness",
+    },
+    {
+      dataElement: "Age_IsValid",
+      domain: "DQ Rule-Customer Analytics",
+      dataClassification: "Age",
+      qualityScore: "50",
+      policy: "AI Usage, GDPR",
+      dimension: "Validity",
+    },
+    {
+      dataElement: "First name_IsValid",
+      domain: "DQ Rule-Customer Analytics",
+      dataClassification: "First name",
+      qualityScore: "75",
+      policy: "AI Usage",
+      dimension: "Accuracy, Validity",
+    },
+    {
+      dataElement: "Occupation_IsValid",
+      domain: "DQ Rule-Customer Analytics",
+      dataClassification: "Occupation",
+      qualityScore: "100",
+      policy: "AI Usage, GDPR, CCPA, UCPA",
+      dimension: "Completeness",
+    },
+    {
+      dataElement: "Percentage_IsValid",
+      domain: "DQ Rule-Customer Analytics",
+      dataClassification: "Percentage",
+      qualityScore: "100",
+      policy: "AI Usage",
+      dimension: "Completeness",
+    },
+    {
+      dataElement: "Country_IsValid",
+      domain: "DQ Rule-Customer Analytics",
+      dataClassification: "Country",
+      qualityScore: "100",
+      policy: "AI Usage, GDPR",
+      dimension: "Accuracy",
+    },
+    {
+      dataElement: "SSN_IsValid",
+      domain: "DQ Rule-Customer Analytics",
+      dataClassification: "SSN",
+      qualityScore: "100",
+      policy: "AI Usage, CCPA",
+      dimension: "Uniqueness",
+    },
+    {
+      dataElement: "Date: month_IsValid",
+      domain: "DQ Rule-Customer Analytics",
+      dataClassification: "Date: month",
+      qualityScore: "75",
+      policy: "AI Usage, CCPA",
+      dimension: "Validity",
+    },
+    {
+      dataElement: "Credit card_IsValid",
+      domain: "DQ Rule-Customer Analytics",
+      dataClassification: "Credit card",
+      qualityScore: "75",
+      policy: "AI Usage, GDPR",
+      dimension: "Accuracy",
+    },
+    {
+      dataElement: "Phone number_IsValid",
+      domain: "DQ Rule-Customer Analytics",
+      dataClassification: "Phone number",
+      qualityScore: "50",
+      policy: "AI Usage",
+      dimension: "Accuracy",
+    },
+    {
+      dataElement: "Street address_IsValid",
+      domain: "DQ Rule-Customer Analytics",
+      dataClassification: "Street address",
+      qualityScore: "100",
+      policy: "AI Usage",
+      dimension: "Completeness",
+    },
+  ];
+
   const AtAGlancePanel = () => (
     <Box width="350px" borderWidth={1} borderRadius="md" p={4}>
       <Flex justifyContent="space-between" alignItems="center" mb={4}>
@@ -224,127 +392,19 @@ export const Dataset = () => {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
-            <Td>transaction_time:Data Type Range</Td>
-            <Td>DQ Rule-public.sales_data_4</Td>
-            <Td>
-              <Tag colorScheme="green">Date</Tag>
-            </Td>
-            <Td>100</Td>
-            <Td>
-              <Tag colorScheme="green">GDPR</Tag>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>transaction_time:Null Range</Td>
-            <Td>DQ Rule-public.sales_data_4</Td>
-            <Td>
-              <Tag colorScheme="green">Date</Tag>
-            </Td>
-            <Td>100</Td>
-            <Td>
-              <Tag colorScheme="green">Utah Consumer Privacy Act</Tag>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>transaction_time:Unique Range</Td>
-            <Td>DQ Rule-public.sales_data_4</Td>
-            <Td>
-              <Tag colorScheme="green">Date</Tag>
-            </Td>
-            <Td>100</Td>
-            <Td>
-              <Tag colorScheme="green">Colorado Privacy Act</Tag>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>transaction_time:Empty Range</Td>
-            <Td>DQ Rule-public.sales_data_4</Td>
-            <Td>
-              <Tag colorScheme="green">Date</Tag>
-            </Td>
-            <Td>100</Td>
-            <Td>
-              <Tag colorScheme="green">CCPA</Tag>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>cost_code:Unique Range</Td>
-            <Td>DQ Rule-public.sales_data_4</Td>
-            <Td>
-              <Tag colorScheme="green">Text</Tag>
-            </Td>
-            <Td>100</Td>
-            <Td>
-              <Tag colorScheme="green">PIPL</Tag>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>cost_code:Null Range</Td>
-            <Td>DQ Rule-public.sales_data_4</Td>
-            <Td>
-              <Tag colorScheme="green">Text</Tag>
-            </Td>
-            <Td>100</Td>
-            <Td>
-              <Tag colorScheme="green">GDPR</Tag>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>cost_code:Empty Range</Td>
-            <Td>DQ Rule-public.sales_data_4</Td>
-            <Td>
-              <Tag colorScheme="green">Text</Tag>
-            </Td>
-            <Td>100</Td>
-            <Td>
-              <Tag colorScheme="green">Utah Consumer Privacy Act</Tag>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>cost_code:Data Type Range</Td>
-            <Td>DQ Rule-public.sales_data_4</Td>
-            <Td>
-              <Tag colorScheme="green">Text</Tag>
-            </Td>
-            <Td>100</Td>
-            <Td>
-              <Tag colorScheme="green">Colorado Privacy Act</Tag>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>Shape Finding</Td>
-            <Td></Td>
-            <Td>
-              <Tag colorScheme="green">Text</Tag>
-            </Td>
-            <Td>96</Td>
-            <Td>
-              <Tag colorScheme="green">CCPA</Tag>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>vendor:type:Unique Range</Td>
-            <Td>DQ Rule-public.sales_data_4</Td>
-            <Td>
-              <Tag colorScheme="green">Text</Tag>
-            </Td>
-            <Td>96</Td>
-            <Td>
-              <Tag colorScheme="green">PIPL</Tag>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>vendor:type:Data Type Range</Td>
-            <Td>DQ Rule-public.sales_data_4</Td>
-            <Td>
-              <Tag colorScheme="green">Text</Tag>
-            </Td>
-            <Td>100</Td>
-            <Td>
-              <Tag colorScheme="green">GDPR</Tag>
-            </Td>
-          </Tr>
+          {qualityData.map((row, index) => (
+            <Tr key={index}>
+              <Td>{row.dataElement}</Td>
+              <Td>{row.domain}</Td>
+              <Td>
+                <Tag colorScheme="green">{row.dataClassification}</Tag>
+              </Td>
+              <Td>{row.qualityScore}</Td>
+              <Td>
+                <Tag colorScheme="green">{row.policy}</Tag>
+              </Td>
+            </Tr>
+          ))}
         </Tbody>
       </Table>
     </Box>
@@ -531,51 +591,34 @@ export const Dataset = () => {
                             </Tr>
                           </Thead>
                           <Tbody>
-                            <Tr>
-                              <Td>
-                                <Checkbox />
-                              </Td>
-                              <Td>CustomerAlternateKey</Td>
-                              <Td>DimCustomer</Td>
-                              <Td>An alternate identifi</Td>
-                              <Td>
-                                <Tag colorScheme="green">ID</Tag>
-                              </Td>
-                              <Td></Td>
-                              <Td>nvarchar</Td>
-                              <Td>18,484</Td>
-                              <Td>0 (0.00</Td>
-                            </Tr>
-                            <Tr>
-                              <Td>
-                                <Checkbox />
-                              </Td>
-                              <Td>C_ADDRESS</Td>
-                              <Td>CUSTOMER</Td>
-                              <Td>Customer address.</Td>
-                              <Td>
-                                <Tag colorScheme="green">Address</Tag>
-                              </Td>
-                              <Td></Td>
-                              <Td>VARCHAR</Td>
-                              <Td>1,500</Td>
-                              <Td>0 (0.00</Td>
-                            </Tr>
-                            <Tr>
-                              <Td>
-                                <Checkbox />
-                              </Td>
-                              <Td>transaction_date</Td>
-                              <Td>sales_data</Td>
-                              <Td>The transaction dat</Td>
-                              <Td>
-                                <Tag colorScheme="green">Date</Tag>
-                              </Td>
-                              <Td></Td>
-                              <Td>DATE</Td>
-                              <Td>4,999</Td>
-                              <Td>0 (0.00</Td>
-                            </Tr>
+                            {dataElements.map((row, index) => (
+                              <Tr key={index}>
+                                <Td>
+                                  <Checkbox />
+                                </Td>
+                                <Td>{row.name}</Td>
+                                <Td>{row.table}</Td>
+                                <Td>{row.description}</Td>
+                                <Td>
+                                  {showDataClasses &&
+                                    row.dataClassification && (
+                                      <Tag colorScheme="green">
+                                        {row.dataClassification}
+                                      </Tag>
+                                    )}
+                                </Td>
+                                <Td>
+                                  {showDataClasses && row.dataCategory && (
+                                    <Tag colorScheme="green">
+                                      {row.dataCategory}
+                                    </Tag>
+                                  )}
+                                </Td>
+                                <Td>{row.technicalDetails}</Td>
+                                <Td>{row.numRows}</Td>
+                                <Td>{row.numEmpty}</Td>
+                              </Tr>
+                            ))}
                           </Tbody>
                         </Table>
                       )}
@@ -637,6 +680,7 @@ export const Dataset = () => {
               <Button
                 colorScheme="purple"
                 onClick={handleMonitor}
+                borderRadius="full"
                 isLoading={isLoading}
               >
                 {isLoading ? <Spinner size="sm" /> : "Monitor"}

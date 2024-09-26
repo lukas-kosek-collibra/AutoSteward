@@ -50,7 +50,7 @@ export const BottomNavRight = () => {
           borderRadius="full"
           aria-readonly="true"
         >
-          Access Data Quality...
+          Ask the Expert
         </MenuButton>
         <MenuList>
           <MenuItem>Foo</MenuItem>
