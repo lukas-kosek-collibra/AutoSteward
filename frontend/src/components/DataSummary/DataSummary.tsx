@@ -695,9 +695,7 @@ export const DataSummary = () => {
                     </FormLabel>
                   </FormControl>
 
-                  {toggleTextArea && (
-                    <Textarea placeholder="Input Sample Data" mb={4} />
-                  )}
+                  {!toggleTextArea && <Textarea mb={4} />}
 
                   <Textarea placeholder="Additional instructions" mb={4} />
                 </>
