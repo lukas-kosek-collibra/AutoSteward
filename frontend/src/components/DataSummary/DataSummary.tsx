@@ -40,6 +40,7 @@ import {
   HStack,
   UnorderedList,
   ListItem,
+  Input,
 } from "@chakra-ui/react";
 import {
   ChevronRight,
@@ -181,6 +182,7 @@ export const DataSummary = () => {
   const [dataClassification, setDataClassification] = useState("");
   const [showPII, setShowPII] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [toggleTextArea, setToggleTextArea] = useState(false);
   const toast = useToast();
   const handleSubmit = () => {
     setIsLoading(true);
@@ -201,6 +203,7 @@ export const DataSummary = () => {
       position: "top",
     });
   };
+
   return (
     <>
       <ColumnNav />
@@ -680,6 +683,14 @@ export const DataSummary = () => {
                     Please include any additional context or instructions to
                     help in generating the data class.
                   </Text>
+                  <Switch
+                    onChange={() => setToggleTextArea(!toggleTextArea)}
+                    mb={4}
+                  />
+                  {toggleTextArea && (
+                    <Textarea placeholder="Input Sample Data" mb={4} />
+                  )}
+
                   <Textarea placeholder="Additional instructions" mb={4} />
                 </>
               ) : (
