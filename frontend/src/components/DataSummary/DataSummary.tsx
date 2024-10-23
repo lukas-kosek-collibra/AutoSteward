@@ -41,6 +41,8 @@ import {
   UnorderedList,
   ListItem,
   Input,
+  FormControl,
+  FormLabel,
 } from "@chakra-ui/react";
 import {
   ChevronRight,
@@ -683,10 +685,16 @@ export const DataSummary = () => {
                     Please include any additional context or instructions to
                     help in generating the data class.
                   </Text>
-                  <Switch
-                    onChange={() => setToggleTextArea(!toggleTextArea)}
-                    mb={4}
-                  />
+                  <FormControl display="flex" alignItems="flex-end" mb={4}>
+                    <Switch
+                      onChange={() => setToggleTextArea(!toggleTextArea)}
+                      mr={2}
+                    />
+                    <FormLabel htmlFor="email-alerts" m="0">
+                      Input Sample Data
+                    </FormLabel>
+                  </FormControl>
+
                   {toggleTextArea && (
                     <Textarea placeholder="Input Sample Data" mb={4} />
                   )}
